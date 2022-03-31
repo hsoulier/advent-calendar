@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [CalendarController::class, 'index'])->name('home');
-Route::get('/product/{id}', [ProductController::class, 'index'])->name('product');
+Route::get('/product/{id}', [ProductController::class, 'single'])->name('product');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
