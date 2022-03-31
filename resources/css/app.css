@@ -1,3 +1,11 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+
+.product__description h1 {
+  @apply text-3xl font-bold mb-4;
+}
+.product__description h2 {
+  @apply text-xl font-semibold mb-2;
+}

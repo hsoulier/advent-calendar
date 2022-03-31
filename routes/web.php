@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\CalendarController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
-use PhpParser\Node\Stmt\Else_;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,9 +15,8 @@ use PhpParser\Node\Stmt\Else_;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [CalendarController::class, 'home'])->name('home');
+Route::get('/product/{id}', [ProductController::class, 'single'])->name('product');
 
 Route::get('/dashboard', [CalendarController::class, 'index'])->middleware(['auth'])->name('dashboard');
 
