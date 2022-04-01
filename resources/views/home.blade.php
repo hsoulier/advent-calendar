@@ -50,8 +50,11 @@
                         <div class="grow w-1/6 min-w-48 h-32 bg-palette-blue grid place-items-center bg-cover bg-center cursor-pointer"
                             style="background-image: url({{ $product->thumbnail }});">
                             <a href="{{ route('product', ['id' => $product->id]) }}"
-                                class="w-full h-full opacity-0 transition-opacity hover:opacity-100 text-white"
-                                title="{{ $product->name }}">{{ $product->name }}</a>
+                                class="group w-full h-full flex items-center justify-center text-center bg-opacity-0 bg-gray-300 transition-all hover:bg-opacity-80 text-white"
+                                title="{{ $product->name }}">
+                                <span
+                                    class="opacity-0 transition-opacity text-xl font-bold group-hover:opacity-100">{{ $product->name }}</span>
+                            </a>
                         </div>
                     @endforeach
                 </div>
