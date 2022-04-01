@@ -5071,7 +5071,8 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var alpinejs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/module.esm.js");
+/* harmony import */ var _web_components_circle_text__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./web-components/circle-text */ "./resources/js/web-components/circle-text.js");
+/* harmony import */ var alpinejs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/module.esm.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -5087,14 +5088,17 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
-window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"];
-alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].start(); // TODO: Fix this
+
+window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_1__["default"];
+alpinejs__WEBPACK_IMPORTED_MODULE_1__["default"].start(); // TODO: Fix this
 
 _toConsumableArray(document.querySelectorAll("#scroll-to-next-screen")).forEach(function ($el) {
   $el.addEventListener("click", function () {
     return document.body.scrollBy(0, window.innerHeight);
   });
 });
+
+customElements.define("circle-text", _web_components_circle_text__WEBPACK_IMPORTED_MODULE_0__.CircleText);
 
 /***/ }),
 
@@ -5126,6 +5130,73 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/web-components/circle-text.js":
+/*!****************************************************!*\
+  !*** ./resources/js/web-components/circle-text.js ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "CircleText": () => (/* binding */ CircleText)
+/* harmony export */ });
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _wrapNativeSuper(Class) { var _cache = typeof Map === "function" ? new Map() : undefined; _wrapNativeSuper = function _wrapNativeSuper(Class) { if (Class === null || !_isNativeFunction(Class)) return Class; if (typeof Class !== "function") { throw new TypeError("Super expression must either be null or a function"); } if (typeof _cache !== "undefined") { if (_cache.has(Class)) return _cache.get(Class); _cache.set(Class, Wrapper); } function Wrapper() { return _construct(Class, arguments, _getPrototypeOf(this).constructor); } Wrapper.prototype = Object.create(Class.prototype, { constructor: { value: Wrapper, enumerable: false, writable: true, configurable: true } }); return _setPrototypeOf(Wrapper, Class); }; return _wrapNativeSuper(Class); }
+
+function _construct(Parent, args, Class) { if (_isNativeReflectConstruct()) { _construct = Reflect.construct; } else { _construct = function _construct(Parent, args, Class) { var a = [null]; a.push.apply(a, args); var Constructor = Function.bind.apply(Parent, a); var instance = new Constructor(); if (Class) _setPrototypeOf(instance, Class.prototype); return instance; }; } return _construct.apply(null, arguments); }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _isNativeFunction(fn) { return Function.toString.call(fn).indexOf("[native code]") !== -1; }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+var CircleText = /*#__PURE__*/function (_HTMLElement) {
+  _inherits(CircleText, _HTMLElement);
+
+  var _super = _createSuper(CircleText);
+
+  function CircleText() {
+    var _this;
+
+    _classCallCheck(this, CircleText);
+
+    _this = _super.call(this);
+
+    var shadowRoot = _this.attachShadow({
+      mode: "open"
+    });
+
+    console.log(_this.getAttribute("extra"));
+    _this.shadowRoot.innerHTML =
+    /*html*/
+    "\n  <style>\n:host {\n  --circle-ajuster: ".concat(5, ";\n  --circle-size: ", _this.getAttribute("size") || "10rem", ";\n  font-weight: 600;\n  color: black;\n  position: fixed;\n  bottom: 0;\n}\n\n.circle-svg {\n  fill: inherit;\n  width: var(--circle-size);\n  height: var(--circle-size);\n}\n.background-flower {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: var(--circle-size);\n  height: var(--circle-size);\n  background-image: url(/images/flower.svg);\n  background-size: calc(var(--circle-size) / 2.5);\n  background-position: center;\n  background-repeat: no-repeat;\n  animation: rotate 40s reverse infinite running linear;\n}\n.circle-svg circle {\n  transform-origin: center;\n}\n.circle-svg text {\n  transform-origin: center;\n  animation: rotate 12s infinite running linear;\n  font-size: calc(var(--circle-size) / var(--circle-ajuster));\n  letter-spacing: ").concat(_this.getAttribute("letter-spacing") || 0, ";\n}\n\n.circle-text textPath {\n  font-family: inherit;\n}\n\n@keyframes rotate {\n  0% {\n    transform: rotate(0);\n  }\n  100% {\n    transform: rotate(1turn);\n  }\n}\n</style>\n  <svg viewBox=\"0 0 200 200\" xmlns=\"http://www.w3.org/2000/svg\" class=\"circle-svg\">\n    <path id=\"circle\" fill=\"none\" stroke=\"none\" d=\"M 100, 100 m -75, 0 a 75,75 0 1,0 150,0 a 75,75 0 1,0 -150,0\" />\n    <text>\n      <textPath href=\"#circle\">\n      ").concat(_this.innerHTML, "\n      </textPath>\n    </text>\n  </svg>\n  <div class=\"background-flower\"></div>\n");
+    return _this;
+  }
+
+  return _createClass(CircleText);
+}( /*#__PURE__*/_wrapNativeSuper(HTMLElement));
 
 /***/ }),
 
