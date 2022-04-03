@@ -49,9 +49,9 @@
                     </a>
                 @endif
 
-                <x-button class="ml-3">
+                <x-classic-button class="ml-3">
                     {{ __('Log in') }}
-                </x-button>
+                </x-classic-button>
             </div>
         </form>
     </x-auth-card>

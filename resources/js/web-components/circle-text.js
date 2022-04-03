@@ -1,8 +1,9 @@
+// ? Code from https://codepen.io/hsoulier/pen/wvzZBvd
+
 export class CircleText extends HTMLElement {
     constructor() {
         super();
         let shadowRoot = this.attachShadow({ mode: "open" });
-        console.log(this.getAttribute("extra"));
         this.shadowRoot.innerHTML = /*html*/ `
   <style>
 :host {

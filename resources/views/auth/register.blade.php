@@ -58,9 +58,9 @@
                     {{ 'Déjà inscrit ?' }}
                 </a>
 
-                <x-button class="ml-4">
+                <x-classic-button class="ml-4">
                     {{ 'S\'inscrire' }}
-                </x-button>
+                </x-classic-button>
             </div>
         </form>
     </x-auth-card>

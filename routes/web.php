@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,9 +16,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// ? endpoints global
 Route::get('/', [CalendarController::class, 'home'])->name('home');
-Route::get('/product/{id}', [ProductController::class, 'single'])->name('product');
+Route::get('/products/{id}', [ProductController::class, 'single'])->name('product');
 
-Route::get('/dashboard', [CalendarController::class, 'index'])->middleware(['auth'])->name('dashboard');
+// ? endpoints of profile (guest)
+Route::get('/profile', [UserController::class, 'profile'])->middleware(['auth'])->name('profile');
+
+// ? endpoints of Dashboard (admin)
+Route::get('/dashboard', [UserController::class, 'index'])->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard/products', [UserController::class, 'index'])->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard/products/{id}', [UserController::class, 'index'])->middleware(['auth'])->name('dashboard');
 
 require __DIR__ . '/auth.php';
