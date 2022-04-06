@@ -7,7 +7,7 @@ export class CircleText extends HTMLElement {
         this.shadowRoot.innerHTML = /*html*/ `
   <style>
 :host {
-  --circle-ajuster: ${5};
+  --circle-ajuster: 7;
   --circle-size: ${this.getAttribute("size") || "10rem"};
   font-weight: 600;
   color: black;
