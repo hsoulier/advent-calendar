@@ -9,13 +9,12 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller {
 
-    // TODO: Revoir la nomenclature des fonctions 
+    // TODO: Revoir la nomenclature des fonctions
     public function index() {
         if (Auth::user()->role == 1) {
             return $this->viewAdmin();
         } else {
             return redirect("/profile");
-            return $this->viewUser();
         }
     }
 

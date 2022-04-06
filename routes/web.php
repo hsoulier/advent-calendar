@@ -25,7 +25,7 @@ Route::get('/profile', [UserController::class, 'profile'])->middleware(['auth'])
 
 // ? endpoints of Dashboard (admin)
 Route::get('/dashboard', [UserController::class, 'index'])->middleware(['auth'])->name('dashboard');
-Route::get('/dashboard/products', [UserController::class, 'index'])->middleware(['auth'])->name('dashboard');
-Route::get('/dashboard/products/{id}', [UserController::class, 'index'])->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard/products', [UserController::class, 'index'])->middleware(['auth'])->name('dashboard-products');
+Route::get('/dashboard/products/{id}', [UserController::class, 'index'])->middleware(['auth'])->name('dashboard-product');
 
 require __DIR__ . '/auth.php';
