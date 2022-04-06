@@ -17,4 +17,4 @@ mix.js("resources/js/app.js", "public/js").postCss(
     [require("postcss-import"), require("tailwindcss"), require("autoprefixer")]
 );
 
-mix.browserSync("127.0.0.1:8000");
+mix.browserSync("advent.cal");

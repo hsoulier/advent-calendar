@@ -18,8 +18,7 @@ class CalendarController extends Controller {
             $iterator++;
         }
         $products = $products->reject(function ($product) {
-            // TODO: Change for the current date (date now)
-            return new DateTime($product->date) > new DateTime('1930-01-01');
+            return new DateTime($product->date) > new DateTime('now');
         });
         // $products->shuffle();
         return view('home', ['products' => $products]);

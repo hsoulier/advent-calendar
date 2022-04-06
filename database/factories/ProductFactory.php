@@ -22,7 +22,7 @@ class ProductFactory extends Factory {
             'updated_at' => now(),
             'thumbnail' => $this->faker->imageUrl(640, 640, 'cats'),
             'origin' => $this->faker->country(),
-            'date' => $this->faker->dateTimeThisCentury('now', null),
+            'date' => $this->faker->dateTimeInInterval('-1 month', '+1 month'),
             'price' => rand(10, 50) * .1,
             'calendar_id' => '1'
         ];
