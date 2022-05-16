@@ -21,6 +21,7 @@
         class="min-h-screen py-8 px-4 grid {{ count($products) === 0 ? 'place-content-center' : '' }} place-content-center">
         @if (count($products) > 0)
             <h2 class="text-5xl text-center mb-8">Qu'avons-nous là ?</h2>
+            {{-- <button class="reset-calendar-state font-bold py-2 px-4 rounded">Reset</button> --}}
             <div class="flex flex-wrap gap-4">
                 @each('components.product.card', $products, 'product')
             </div>
