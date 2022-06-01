@@ -5,50 +5,31 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Calendar;
 use \DateTime;
+use Illuminate\Http\Request;
 
 class CalendarController extends Controller
 {
-    public function home()
+    public function home(Request $request)
     {
-        $calendar = Calendar::findOrFail(1);
-        $dayToShow = $calendar->day_to_show;
-
+        $maxDate = new DateTime($request->query('end'));
+        $nbDays = 0;
         $products = Product::where(['calendar_id' => 1])
             ->get()
-            ->sortBy(function ($el, $key) {
+            ->sortBy(function ($el) {
                 return date_timestamp_get(new DateTime($el->date));
             });
         $iterator = 1;
         foreach ($products as &$product) {
             $product->order = $iterator;
             $iterator++;
+            if (new DateTime($product->date) <= $maxDate) {
+                $product->is_available = true;
+                $nbDays++;
+            }
         }
-        $products = $products->reject(function ($product) {
-            return new DateTime($product->date) > new DateTime('now');
-        });
-        // $products->shuffle();
         return view('home', [
             'products' => $products,
-            'dayToShow' => $dayToShow,
+            'nbDays' => $nbDays,
         ]);
-    }
-
-    public function resetDay()
-    {
-        // Reset calendar days
-        $calendar = Calendar::findOrFail(1);
-        $calendar->day_to_show = 1;
-        $calendar->save();
-        return redirect()->route('home');
-    }
-
-    public function addDay()
-    {
-        // Increment one calendar day to show
-        $calendar = Calendar::findOrFail(1);
-        $calendar->day_to_show++;
-        $calendar->save();
-
-        return redirect()->route('home');
     }
 }

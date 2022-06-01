@@ -21,15 +21,12 @@
         class="min-h-screen py-8 px-4 grid {{ count($products) === 0 ? 'place-content-center' : '' }} place-content-center">
         @if (count($products) > 0)
             <h2 class="text-5xl text-center mb-8">Qu'avons-nous là ?</h2>
-            <a class="text-center font-bold py-2 px-4 rounded" href="{{ route('resetDay') }}">Reset</a>
-            <a class="text-center font-bold py-2 px-4 rounded" href="{{ route('addDay') }}">+1 day</a>
             <div class="m-4">
-                Jours disponibles - {{ $dayToShow }}
+                Jours disponibles -  {{ $nbDays }} / {{ count($products) }}
             </div>
             <div class="flex flex-wrap gap-4">
-                {{-- @each('components.product.card', $products, 'product') --}}
                 @foreach ($products as $product)
-                    @include('components.product.card', ['product' => $product, 'dayToShow' => $dayToShow])
+                    @include('components.product.card', ['product' => $product])
                 @endforeach
             </div>
         @else
