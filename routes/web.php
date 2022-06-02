@@ -23,6 +23,9 @@ Route::get('/contact', fn () => view('contact'))->name('contact');
 Route::get('/about', fn () => view('about'))->name('about');
 Route::get('/products/{id}', [ProductController::class, 'single'])->name('product');
 
+Route::get('/addDay', [CalendarController::class, 'addDay'])->middleware(['auth'])->name('addDay');
+Route::get('/resetDay', [CalendarController::class, 'resetDay'])->middleware(['auth'])->name('resetDay');
+
 // ? endpoints of profile (guest)
 Route::get('/profile', [UserController::class, 'profile'])->middleware(['auth'])->name('profile');
 Route::get('/logout', [UserController::class, 'logout'])->middleware(['auth'])->name('logout');
