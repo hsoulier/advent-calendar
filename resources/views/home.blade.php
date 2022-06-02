@@ -21,9 +21,13 @@
         class="min-h-screen py-8 px-4 grid {{ count($products) === 0 ? 'place-content-center' : '' }} place-content-center">
         @if (count($products) > 0)
             <h2 class="text-5xl text-center mb-8">Qu'avons-nous là ?</h2>
-            {{-- <button class="reset-calendar-state font-bold py-2 px-4 rounded">Reset</button> --}}
+            <div class="m-4">
+                Jours disponibles -  {{ $nbDays }} / {{ count($products) }}
+            </div>
             <div class="flex flex-wrap gap-4">
-                @each('components.product.card', $products, 'product')
+                @foreach ($products as $product)
+                    @include('components.product.card', ['product' => $product])
+                @endforeach
             </div>
         @else
             <h2 class="text-5xl text-center mb-8">🤫 Ce n'est pas encore <br />l'heure du calendrier</h2>
