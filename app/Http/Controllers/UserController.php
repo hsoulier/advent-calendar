@@ -33,7 +33,6 @@ class UserController extends Controller
 
     public function viewAdmin()
     {
-        // dd(User::all());
         return view('dashboard', ['users' => User::all()]);
     }
 
