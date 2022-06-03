@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Form;
 use App\Models\Purchase;
 use App\Models\Subscription;
 use Illuminate\Http\Request;
@@ -31,6 +32,32 @@ class UserController extends Controller {
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect('/');
+    }
+
+
+    public function sendContact(Request $request) {
+        //dd($request->request);
+
+         // Form validation
+       $this->validate($request, [
+        'name' => 'required',
+        'email' => 'required|email',
+        'tel' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:8',
+        'adress' => 'required',
+        'message' => 'required',
+     ]);
+
+    //  Store data in database
+    Form::create($request->all());
+    //
+
+
+        //récupérer les paramètres de la requête, il faut : insérer les infos dans la bdd
+
+
+
+        // TODO: Gérer si form est envoyé et validé (flag success)
+        return view("contact", ["success" => true]);
     }
 
     public function viewAdmin() {

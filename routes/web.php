@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 // ? endpoints global
 Route::get('/', [CalendarController::class, 'home'])->name('home');
 Route::get('/contact', fn () => view('contact'))->name('contact');
+Route::post('/contact', [UserController::class, 'sendContact'])->name('send-contact');
 Route::get('/about', fn () => view('about'))->name('about');
 Route::get('/products/{id}', [ProductController::class, 'single'])->name('product');
 
@@ -34,6 +35,7 @@ Route::get('/logout', [UserController::class, 'logout'])->middleware(['auth'])->
 Route::get('/dashboard', [UserController::class, 'index'])->middleware(['auth'])->name('dashboard');
 Route::get('/dashboard/products', [UserController::class, 'index'])->middleware(['auth'])->name('dashboard-products');
 Route::get('/dashboard/products/{id}', [UserController::class, 'index'])->middleware(['auth'])->name('dashboard-product');
+
 
 // Stripe
 // Route::get('/subscription/create', [SubscriptionController::class, 'index'])->name('subscription.create');
