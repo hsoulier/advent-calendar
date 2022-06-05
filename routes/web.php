@@ -1,10 +1,11 @@
 <?php
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\StripeController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\SubscriptionController;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,7 +37,9 @@ Route::get('/dashboard/products', [UserController::class, 'index'])->middleware(
 Route::get('/dashboard/products/{id}', [UserController::class, 'index'])->middleware(['auth'])->name('dashboard-product');
 
 // Stripe
-// Route::get('/subscription/create', [SubscriptionController::class, 'index'])->name('subscription.create');
-// Route::post('order-post', [SubscriptionController::class, 'orderPost'])->name('order-post');
+Route::get('/profile/create-customer', [UserController::class, 'create_customer'])->middleware(['auth'])->name('create-customer');
+Route::get('/checkout/{price_id}', [StripeController::class, 'checkout'])->middleware(['auth'])->name('checkout');
+Route::get('/payment-success', fn () => view('payment', ['type' => 'success']))->name('payment-success');
+Route::get('/payment-cancel', fn (Request $request) => view('payment', ['type' => 'cancel', 'price_id' => $request->price_id]))->name('payment-cancel');
 
 require __DIR__ . '/auth.php';

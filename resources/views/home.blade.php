@@ -21,8 +21,9 @@
         class="min-h-screen py-8 px-4 grid {{ count($products) === 0 ? 'place-content-center' : '' }} place-content-center">
         @if (count($products) > 0)
             <h2 class="text-5xl text-center mb-8">Qu'avons-nous là ?</h2>
+            <a class="button outline-btn justify-self-center" href="{{ route('checkout', ['price_1L5YCULxko5YkdEBUOLsjTLF']) }}">Acheter l'ensemble du calendrier</a>
             <div class="m-4">
-                Jours disponibles -  {{ $nbDays }} / {{ count($products) }}
+                Jours disponibles - {{ $nbDays }} / {{ count($products) }}
             </div>
             <div class="flex flex-wrap gap-4">
                 @foreach ($products as $product)

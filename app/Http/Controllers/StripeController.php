@@ -3,42 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
-use Stripe;
-use Session;
-use Exception;
+use Illuminate\Support\Facades\Auth;
 
-class SubscriptionController extends Controller {
-    public function index() {
-        return view('subscription.create');
+class StripeController extends Controller {
+    public function checkout(Request $request) {
+        $user = Auth::user();
+        if (!$user->stripe_id) {
+            $user->createAsStripeCustomer();
+        }
+        return $request->user()->checkout([$request->price_id => 1], [
+            'success_url' => route('payment-success', ['price_id' => $request->price_id]),
+            'cancel_url' => route('payment-cancel', ['price_id' => $request->price_id]),
+        ]);
     }
-
-    // public function orderPost(Request $request) {
-    //     $user = auth()->user();
-    //     $input = $request->all();
-    //     $token =  $request->stripeToken;
-    //     $paymentMethod = $request->paymentMethod;
-    //     try {
-
-    //         Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
-
-    //         if (is_null($user->stripe_id)) {
-    //             $stripeCustomer = $user->createAsStripeCustomer();
-    //         }
-
-    //         \Stripe\Customer::createSource(
-    //             $user->stripe_id,
-    //             ['source' => $token]
-    //         );
-
-    //         $user->newSubscription('test', $input['plane'])
-    //             ->create($paymentMethod, [
-    //                 'email' => $user->email,
-    //             ]);
-
-    //         return back()->with('success', 'Subscription is completed.');
-    //     } catch (Exception $e) {
-    //         return back()->with('success', $e->getMessage());
-    //     }
-    // }
 }

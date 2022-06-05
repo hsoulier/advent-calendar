@@ -26,6 +26,15 @@ class UserController extends Controller {
         return view('profile', ['user' => $user]);
     }
 
+    public function create_customer() {
+        $user = Auth::user();
+        if ($user->stripe_id) {
+            return redirect('/profile');
+        }
+        $user->createAsStripeCustomer();
+        return redirect('/profile');
+    }
+
     public function logout(Request $request) {
         Auth::logout();
         $request->session()->invalidate();

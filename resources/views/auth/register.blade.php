@@ -42,25 +42,23 @@
             {{-- Phone --}}
             <div class="mt-4">
                 <x-label for="phone" :value="'Téléphone'" />
-                <x-input id="phone" class="block mt-1 w-full" type="tel" name="tel" required maxlength="10" />
+                <x-input id="phone" class="block mt-1 w-full" type="tel" name="tel" maxlength="10" />
             </div>
 
             {{-- Address --}}
             <div class="mt-4">
                 <x-label for="address" :value="'Adresse'" />
-                <x-input id="address" class="block mt-1 w-full" type="text" name="address" required />
+                <x-input id="address" class="block mt-1 w-full" type="text" name="address" />
             </div>
-
-
 
             <div class="flex items-center justify-end mt-4">
                 <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
                     {{ 'Déjà inscrit ?' }}
                 </a>
 
-                <x-classic-button class="ml-4">
+                <button type="submit" class="button ml-4">
                     {{ 'S\'inscrire' }}
-                </x-classic-button>
+                </button>
             </div>
         </form>
     </x-auth-card>
