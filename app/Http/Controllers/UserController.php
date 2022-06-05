@@ -36,9 +36,7 @@ class UserController extends Controller {
 
 
     public function sendContact(Request $request) {
-        //dd($request->request);
 
-         // Form validation
        $this->validate($request, [
         'name' => 'required',
         'email' => 'required|email',
@@ -47,17 +45,16 @@ class UserController extends Controller {
         'message' => 'required',
      ]);
 
-    //  Store data in database
     Form::create($request->all());
-    //
 
 
-        //récupérer les paramètres de la requête, il faut : insérer les infos dans la bdd
 
 
 
         // TODO: Gérer si form est envoyé et validé (flag success)
-        return view("contact", ["success" => true]);
+        //return view("contact", ["success" => true]);
+        return back()->with('success', 'Votre message a bien été envoyé et les données sont enregistrées avec succès.');
+
     }
 
     public function viewAdmin() {
