@@ -35,24 +35,24 @@
                 <form action="{{ route('send-contact') }}" method="POST" class="space-y-4 p-8 mt-6 mb-0 rounded-lg shadow-2xl bg-white">
                     @csrf
                     <div>
-                        <label for="name" class="text-sm font-medium">Name</label>
+                        <label for="name" class="text-sm font-medium">Nom</label>
                         <input type="text" name="name" id="name" value="{{ Auth::user()->name ?? '' }}" class="w-full p-3 text-sm border-gray-200 rounded-lg"/>
                     </div>
 
                     <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
                         <div>
-                            <label for="email" class="text-sm font-medium">Email</label>
+                            <label for="email" class="text-sm font-medium">E-mail</label>
                             <input type="email" name="email" id="email" value="{{ Auth::user()->email ?? '' }}" class="w-full p-3 text-sm border-gray-200 rounded-lg"/>
                         </div>
 
                         <div>
-                            <label for="tel" class="text-sm font-medium">Phone number</label>
+                            <label for="tel" class="text-sm font-medium">Téléphone</label>
                             <input type="text" name="tel" id="tel" value="{{ Auth::user()->tel ?? '' }}" class="w-full p-3 text-sm border-gray-200 rounded-lg" />
                         </div>
                     </div>
 
                     <div>
-                        <label for="adress" class="text-sm font-medium">Address</label>
+                        <label for="adress" class="text-sm font-medium">Adresse</label>
                         <input type="text" name="adress" id="adress" value="{{ Auth::user()->address ?? '' }}" class="w-full p-3 text-sm border-gray-200 rounded-lg"/>
                     </div>
 
@@ -64,7 +64,7 @@
                     <div class="mt-4">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                         <button type="submit" class="inline-flex items-center justify-center w-full px-5 py-3 text-white bg-black rounded-lg sm:w-auto">
-                            <span class="font-medium"> Send </span>
+                            <span class="font-medium"> Envoyer </span>
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ml-3" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
