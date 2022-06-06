@@ -6,25 +6,50 @@
                     <h1> Admin page</h1>
                 </div>
 
-                <div class="m-6">
-                    <h2 style="margin-bottom:40px;font-size:50px;font-weight:700">Gestion des utilisateurs</h2>
+                <div class="m-6 p-6 shadow-sm">
+                    <h2 style="margin-bottom:40px;font-size:50px;font-weight:700">
+                        Gestion des utilisateurs
+                    </h2>
                     <section style="display: flex;flex-direction:column;gap:24px;">
                         @foreach ($users as $user)
                             <div style="display:flex;gap:12px;align-items:center">
                                 <p>{{ $user->name }}</p> -
                                 <p>Email : {{ $user->email }}</p> -
                                 <p>Téléphone : {{ $user->tel }}</p>
-                                <p>Rôle :
-                                    @if ($user->role === 1)
+                                @if ($user->role === 1)
+                                    <p>Rôle :
                                         <span style="color:rgb(209, 20, 20)">Admin</span>
-                                    @else
+                                    </p>
+                                @else
+                                    <p>Rôle :
                                         <span style="color:green">Utilisateur</span>
-                                    @endif
-                                </p>
-                                <a href="{{ route('deleteAccount', $user->id) }}"
-                                    class="py-2 px-4 rounded bg-palette-lavender text-white font-semibold">
-                                    Supprimer
-                                </a>
+                                    </p>
+                                    <a href="{{ route('delete-account', $user->id) }}"
+                                        class="py-2 px-4 rounded bg-palette-lavender text-white font-semibold">
+                                        Supprimer
+                                    </a>
+                                @endif
+                            </div>
+                        @endforeach
+                    </section>
+                </div>
+
+                <div class="m-6 p-6 shadow-sm">
+                    <h2 style="margin-bottom:40px;font-size:50px;font-weight:700">
+                        Gestion des produits
+                    </h2>
+                    <section style="display: flex;flex-direction:column;gap:8px;">
+                        @foreach ($products as $product)
+                            <div class="py-2 px-4 text-white font-semibold"
+                                style="display: flex; align-items:center;gap:40px; background:rgb(139, 139, 139)">
+                                <p style="width:250px;text-overflow:ellipsis; white-space: nowrap; overflow:hidden;">
+                                    {{ $product->date }} - {{ $product->name }}</p>
+                                <p style="width:250px; text-overflow:ellipsis; white-space: nowrap; overflow:hidden;">
+                                    {{ $product->description }}</p>
+                                <p style="white-space: nowrap;"> {{ $product->price }} €</p>
+                                <a href="{{ route('edit-product', ['id' => $product->id]) }}"
+                                    class="py-2 px-4 rounded bg-palette-lavender text-white"
+                                    style="margin-left: auto">Modifier</a>
                             </div>
                         @endforeach
                     </section>

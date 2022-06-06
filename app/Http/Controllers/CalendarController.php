@@ -15,7 +15,7 @@ class CalendarController extends Controller {
             ->sortBy(fn ($el) => date_timestamp_get(new DateTime($el->date)));
         $nbDays = 0;
         $iterator = 1;
-        foreach ($products as &$product) {
+        foreach ($products as $product) {
             $product->order = $iterator;
             $iterator++;
             if (new DateTime($product->date) <= $maxDate) {

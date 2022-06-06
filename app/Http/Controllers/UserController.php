@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use App\Models\Purchase;
 use App\Models\Subscription;
 use App\Models\User;
@@ -31,27 +32,24 @@ class UserController extends Controller
         return view('profile', ['user' => $user]);
     }
 
-    public function logout(Request $request) {
+    public function logout(Request $request)
+    {
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect('/');
     }
 
-    public function viewAdmin() {
-        return view('dashboard');
+    public function viewAdmin()
+    {
+        return view('dashboard', [
+            'users' => User::all(),
+            'products' => Product::all(),
+        ]);
     }
 
     public function viewUser()
     {
         return view('profile');
-    }
-
-    public function deleteAccount($id)
-    {
-        $user = User::find($id);
-        // dd($user);
-        $user->delete();
-        return redirect('/dashboard');
     }
 }

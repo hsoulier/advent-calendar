@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
@@ -32,10 +33,12 @@ Route::get('/logout', [UserController::class, 'logout'])->middleware(['auth'])->
 
 // ? endpoints of Dashboard (admin)
 Route::get('/dashboard', [UserController::class, 'index'])->middleware(['auth'])->name('dashboard');
-Route::get('/deleteAccount/{id}', [UserController::class, 'deleteAccount'])->middleware(['auth'])->name('deleteAccount');
 Route::get('/dashboard/products', [UserController::class, 'index'])->middleware(['auth'])->name('dashboard-products');
 Route::get('/dashboard/products/{id}', [UserController::class, 'index'])->middleware(['auth'])->name('dashboard-product');
 
+Route::get('/deleteAccount/{id}', [AdminController::class, 'deleteAccount'])->middleware(['auth'])->name('delete-account');
+Route::get('/edit/{id}', [AdminController::class, 'editProduct'])->middleware(['auth'])->name('edit-product');
+Route::get('/update/{id}', [AdminController::class, 'updateProduct'])->middleware(['auth'])->name('update-product');
 // Stripe
 // Route::get('/subscription/create', [SubscriptionController::class, 'index'])->name('subscription.create');
 // Route::post('order-post', [SubscriptionController::class, 'orderPost'])->name('order-post');

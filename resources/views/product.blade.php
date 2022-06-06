@@ -12,11 +12,12 @@
             <h1 class="text-8xl m-6 mt-3 font-extrabold text-center">
                 {{ $product->name }}
             </h1>
-            <p class="text-center tracking-widest">
-                <span>Origine : </span>
-                <span class="italic font-bold">{{ $product->origin }}</span>
-            </p>
         </section>
+
+        <section class="product__description my-12 w-5/12 max-w-xl mx-auto">
+            <img src=" {{ $product->thumbnail }}" alt="">
+        </section>
+
         <section class="product__description my-12 w-5/12 max-w-xl mx-auto">
             {!! $product->description !!}
         </section>
