@@ -36,6 +36,9 @@ Route::get('/dashboard', [UserController::class, 'index'])->middleware(['auth'])
 Route::get('/dashboard/products', [UserController::class, 'index'])->middleware(['auth'])->name('dashboard-products');
 Route::get('/dashboard/products/{id}', [UserController::class, 'index'])->middleware(['auth'])->name('dashboard-product');
 
+Route::post('/products/comment', [ProductController::class, 'send_comment'])->name('send-comment');
+
+
 
 // Stripe
 // Route::get('/subscription/create', [SubscriptionController::class, 'index'])->name('subscription.create');
