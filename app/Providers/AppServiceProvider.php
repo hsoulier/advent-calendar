@@ -19,7 +19,7 @@ class AppServiceProvider extends ServiceProvider {
     }
 
     /**
-     * Bootstrap any application services.
+     * Bootstrap any application services. 
      *
      * @return void
      */
@@ -28,6 +28,5 @@ class AppServiceProvider extends ServiceProvider {
         Cashier::useCustomerModel(User::class);
         Cashier::calculateTaxes();
         Cashier::useSubscriptionModel(Subscription::class);
-        Cashier::useSubscriptionItemModel(SubscriptionItem::class);
     }
 }

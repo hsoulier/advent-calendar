@@ -39,7 +39,7 @@ Route::get('/dashboard/products/{id}', [UserController::class, 'index'])->middle
 // Stripe
 Route::get('/profile/create-customer', [UserController::class, 'create_customer'])->middleware(['auth'])->name('create-customer');
 Route::get('/checkout/{price_id}', [StripeController::class, 'checkout'])->middleware(['auth'])->name('checkout');
-Route::get('/payment-success', fn () => view('payment', ['type' => 'success']))->name('payment-success');
+Route::get('/payment-success', [StripeController::class, 'payment_success'])->name('payment-success');
 Route::get('/payment-cancel', fn (Request $request) => view('payment', ['type' => 'cancel', 'price_id' => $request->price_id]))->name('payment-cancel');
 
 require __DIR__ . '/auth.php';

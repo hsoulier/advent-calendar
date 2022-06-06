@@ -35,6 +35,7 @@ Use Yarn instead of NPM
 - Auth (admin + Guest)
   - 2 status
 - Redirection for guest
+- Stripe (Cashier + Stripe libs) - partial due to non comprehensible errors 😤
 
 ### Libs
 
