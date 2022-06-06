@@ -7,17 +7,13 @@ use App\Models\Calendar;
 use \DateTime;
 use Illuminate\Http\Request;
 
-class CalendarController extends Controller
-{
-    public function home(Request $request)
-    {
+class CalendarController extends Controller {
+    public function home(Request $request) {
         $maxDate = new DateTime($request->query('end'));
-        $nbDays = 0;
         $products = Product::where(['calendar_id' => 1])
             ->get()
-            ->sortBy(function ($el) {
-                return date_timestamp_get(new DateTime($el->date));
-            });
+            ->sortBy(fn ($el) => date_timestamp_get(new DateTime($el->date)));
+        $nbDays = 0;
         $iterator = 1;
         foreach ($products as &$product) {
             $product->order = $iterator;

@@ -8,11 +8,14 @@
             <a class="py-2 px-4 rounded bg-palette-lavender text-black font-semibold"
                 href="{{ route('dashboard') }}">Accéder au Dashboard</a>
         @endif
+        
     </section>
     @if (count($user->subscriptions))
-        <section> 
+        <section>
             <div>Vous avez un acheté un abonnement</div>
         </section>
+    @else
+        <div>Vous n'avez pas souscrit à un calendrier</div>
     @endif
 
     @if (count($user->purchases))
@@ -21,5 +24,7 @@
                 <div>{{ $purchase->product_id }}</div>
             @endforeach
         </section>
+    @else
+        <div>Pas de produits acheté encore 🥹</div>
     @endif
 </x-layout>
