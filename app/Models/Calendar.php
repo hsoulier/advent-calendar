@@ -7,4 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Calendar extends Model {
     use HasFactory;
+    public function subscription() {
+        return $this->belongsTo(Subscription::class);
+    }
 }
