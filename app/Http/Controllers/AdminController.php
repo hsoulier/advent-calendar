@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Form;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -30,6 +31,13 @@ class AdminController extends Controller
         $product->date = $request->date;
         $product->thumbnail = $request->thumbnail;
         $product->save();
+        return redirect('/dashboard');
+    }
+
+    public function deleteContact($id)
+    {
+        $contact = Form::find($id);
+        $contact->delAete();
         return redirect('/dashboard');
     }
 }
