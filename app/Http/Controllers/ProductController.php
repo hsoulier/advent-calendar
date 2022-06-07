@@ -25,9 +25,9 @@ class ProductController extends Controller
 
         $comments = Comment::where(['product_id' => $request->id])
             ->get()
-            ->sortBy(fn($el) => date_timestamp_get(new DateTime($el->date)));
+            ->sortBy(fn() => date_timestamp_get(new DateTime()));
 
-        //dd($comments);
+        // dd($comments[0]->user);
         return view('product', [
             'product' => $product,
             'comments' => $comments,
@@ -36,30 +36,16 @@ class ProductController extends Controller
 
     public function send_comment(Request $request)
     {
-        $user = Auth::user();
-
         $values = $request->all();
+        $comment = new Comment();
 
-        /* dd([
-            //'user_id' => Auth::id(),
-            'product_id' => intval($values['product_id']),
-            'user_id' => $user->id,
-            'text' => $values['comment'],
-            'date' => new DateTime()
-        ]); */
+        $comment->product_id = intval($values['product_id']);
+        $comment->user_id = Auth::user()->id;
+        $comment->reply_to = 0;
+        $comment->text = $values['comment'];
+        $comment->date = new DateTime();
 
-        $product = Product::findOrFail($values['product_id']);
-
-        $comm = Comment::create([
-            //'user_id' => Auth::id(),
-            'product_id' => intval($values['product_id']),
-            'user_id' => $user->id,
-            'text' => $values['comment'],
-            'date' => new DateTime(),
-        ]);
-
-        //dd($comm);
-
-        return redirect("/products/{$request->request->product_id}");
+        $comment->save();
+        return redirect("/products/{$values['product_id']}");
     }
 }

@@ -25,8 +25,11 @@
                 <p class="mt-8 text-center text-gray-400">Ce produit n'a pas de commentaires</p>
             @else
                 @foreach ($comments as $comment)
-                    {{ $comment->date }}
-                    {{ $comment->text }}
+                    <div class="text-gray-400 text-sm">
+                        <span class="italic">{{ $comment->date }}</span> -
+                        <span class="font-bold">{{ $comment->user->name }}</span>
+                    </div>
+                    <div class="mt-2">{{ $comment->text }}</div>
                 @endforeach
             @endif
 
