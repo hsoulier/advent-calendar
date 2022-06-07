@@ -21,8 +21,7 @@ class UserController extends Controller {
     public function profile() {
         $user = Auth::user();
         $user->purchases = Purchase::where(['user_id' => $user->id])->get();
-        // $subscriptions = Subscription::whereRelation('user_id', $user->id);
-        // dd($subscriptions);
+        $subscription = Subscription::where(['user_id' => $user->id])->first();
         $user->subscriptions = Subscription::where(['user_id' => $user->id])->get();
         // dd($user);
         return view('profile', ['user' => $user]);
@@ -36,6 +35,7 @@ class UserController extends Controller {
         $user->createAsStripeCustomer();
         return redirect('/profile');
     }
+
 
     public function logout(Request $request) {
         Auth::logout();

@@ -13,11 +13,11 @@
 
     <main class="mx-auto pt-8 px-8 lg:container">
         <section>
-            <h2 class="text-lg font-bold mb-2">Calendriers</h2>
+            <h2 class="text-lg font-bold mb-2">Calendriers achetés</h2>
             @if (count($user->subscriptions))
                 @foreach ($user->subscriptions as $item)
                     <article class="flex justify-between items-center">
-                        <h3 class="font-semibold">{{ $item->name }}</h3>
+                        <h3 class="font-semibold">{{ $item->calendar->name }}</h3>
                         <div class="inline-flex items-center gap-4">
                             <span
                                 class="bg-green-100 text-green-700 px-3 py-1.5 rounded text-xs font-medium">{{ $item->stripe_status }}</span>
@@ -31,13 +31,18 @@
 
         </section>
         <section class="mt-12">
+            <h2 class="text-lg font-bold mb-2">Produits individuels</h2>
             @if (count($user->purchases))
                 @foreach ($user->purchases as $purchase)
                     <div>{{ $purchase->product_id }}</div>
                 @endforeach
             @else
-                <div>Pas de produits acheté encore 🥹</div>
+                <div class="text-center mt-2 text-gray-400">Pas de produits acheté encore 🥹</div>
             @endif
+        </section>
+
+        <section class="mt-24">
+            <h3 class="text-palette-orange text-lg font-bold mb-2">Danger Zone</h3>
         </section>
     </main>
 </x-layout>

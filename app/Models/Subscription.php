@@ -10,6 +10,6 @@ class Subscription extends CashierSubscription {
     use HasFactory;
 
     public function calendar() {
-        return $this->hasOne(Calendar::class);
+        return $this->hasOne(Calendar::class, 'id', 'calendar_id');
     }
 }

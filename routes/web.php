@@ -30,6 +30,7 @@ Route::get('/resetDay', [CalendarController::class, 'resetDay'])->middleware(['a
 // ? endpoints of profile (guest)
 Route::get('/profile', [UserController::class, 'profile'])->middleware(['auth'])->name('profile');
 Route::get('/logout', [UserController::class, 'logout'])->middleware(['auth'])->name('logout');
+Route::get('/delete-user', [UserController::class, 'delete_user'])->middleware(['auth'])->name('delete-user');
 
 // ? endpoints of Dashboard (admin)
 Route::get('/dashboard', [UserController::class, 'index'])->middleware(['auth'])->name('dashboard');
