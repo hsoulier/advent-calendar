@@ -41,7 +41,7 @@
                     <section style="display: flex;flex-direction:column;gap:8px;">
                         @foreach ($products as $product)
                             <div class="py-2 px-4 text-white font-semibold"
-                                style="display: flex; align-items:center;gap:40px; background:rgb(139, 139, 139)">
+                                style="display:flex; align-items:center;gap:40px; background:rgb(139, 139, 139)">
                                 <p style="width:250px;text-overflow:ellipsis; white-space: nowrap; overflow:hidden;">
                                     {{ $product->date }} - {{ $product->name }}</p>
                                 <p style="width:250px; text-overflow:ellipsis; white-space: nowrap; overflow:hidden;">
