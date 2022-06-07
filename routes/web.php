@@ -25,9 +25,7 @@ Route::get('/contact', fn () => view('contact'))->name('contact');
 Route::post('/contact', [UserController::class, 'sendContact'])->name('send-contact');
 Route::get('/about', fn () => view('about'))->name('about');
 Route::get('/products/{id}', [ProductController::class, 'single'])->name('product');
-
-Route::get('/addDay', [CalendarController::class, 'addDay'])->middleware(['auth'])->name('addDay');
-Route::get('/resetDay', [CalendarController::class, 'resetDay'])->middleware(['auth'])->name('resetDay');
+Route::post('/products/comment', [ProductController::class, 'send_comment'])->name('send-comment');
 
 // ? endpoints of profile (guest)
 Route::get('/profile', [UserController::class, 'profile'])->middleware(['auth'])->name('profile');
@@ -41,7 +39,7 @@ Route::get('/dashboard/products/{id}', [UserController::class, 'index'])->middle
 Route::get('/deleteAccount/{id}', [AdminController::class, 'deleteAccount'])->middleware(['auth'])->name('delete-account');
 Route::get('/edit/{id}', [AdminController::class, 'editProduct'])->middleware(['auth'])->name('edit-product');
 Route::get('/update/{id}', [AdminController::class, 'updateProduct'])->middleware(['auth'])->name('update-product');
-Route::post('/products/comment', [ProductController::class, 'send_comment'])->name('send-comment');
+Route::get('/deleteContactMessage/{id}', [AdminController::class, 'deleteContactMessage'])->middleware(['auth'])->name('delete-contact-message');
 
 // Stripe
 Route::get('/profile/create-customer', [UserController::class, 'create_customer'])->middleware(['auth'])->name('create-customer');

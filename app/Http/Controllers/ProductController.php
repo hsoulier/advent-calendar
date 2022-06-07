@@ -9,27 +9,35 @@ use Illuminate\Http\Request;
 use Spatie\LaravelMarkdown\MarkdownRenderer;
 use Illuminate\Support\Facades\Auth;
 
-
-
-
-class ProductController extends Controller {
-    public function single(Request $request) {
+class ProductController extends Controller
+{
+    public function single(Request $request)
+    {
         $product = Product::findOrFail($request->id);
-        $product->description = app(MarkdownRenderer::class)->toHtml($product->description);
+
+        // Bloquer l'accès aux produits dépassant la date d'aujd
+        if (new DateTime($product->date) > new DateTime()) {
+            return redirect()->route('home');
+        }
+        $product->description = app(MarkdownRenderer::class)->toHtml(
+            $product->description
+        );
 
         $comments = Comment::where(['product_id' => $request->id])
             ->get()
-            ->sortBy(fn () => date_timestamp_get(new DateTime()));
+            ->sortBy(fn() => date_timestamp_get(new DateTime()));
 
         // dd($comments[0]->user);
-        return view('product', ['product' => $product, 'comments' => $comments]);
+        return view('product', [
+            'product' => $product,
+            'comments' => $comments,
+        ]);
     }
 
-
-
-    public function send_comment(Request $request) {
+    public function send_comment(Request $request)
+    {
         $values = $request->all();
-        $comment = new Comment;
+        $comment = new Comment();
 
         $comment->product_id = intval($values['product_id']);
         $comment->user_id = Auth::user()->id;

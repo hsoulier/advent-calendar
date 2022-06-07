@@ -41,7 +41,7 @@
                     <section style="display: flex;flex-direction:column;gap:8px;">
                         @foreach ($products as $product)
                             <div class="py-2 px-4 text-white font-semibold"
-                                style="display: flex; align-items:center;gap:40px; background:rgb(139, 139, 139)">
+                                style="display:flex; align-items:center;gap:40px; background:rgb(139, 139, 139)">
                                 <p style="width:250px;text-overflow:ellipsis; white-space: nowrap; overflow:hidden;">
                                     {{ $product->date }} - {{ $product->name }}</p>
                                 <p style="width:250px; text-overflow:ellipsis; white-space: nowrap; overflow:hidden;">
@@ -50,6 +50,36 @@
                                 <a href="{{ route('edit-product', ['id' => $product->id]) }}"
                                     class="py-2 px-4 rounded bg-palette-lavender text-white"
                                     style="margin-left: auto">Modifier</a>
+                            </div>
+                        @endforeach
+                    </section>
+                </div>
+
+                <div class="m-6 p-6 shadow-sm">
+                    <h2 style="margin-bottom:40px;font-size:50px;font-weight:700">
+                        Gestion des demandes de contact
+                    </h2>
+                    <section style="display: flex;flex-direction:column;gap:8px;">
+                        @foreach ($contacts as $contact)
+                            <div style="background: rgb(230, 230, 230);border-radius: 0.25rem;" class="px-5 py-2">
+                                <p style="font-size:20px">
+                                    Message de
+                                    <span style="font-size: 1.3em;font-weight:bold">{{ $contact->name }}</span>
+                                </p>
+
+                                <p style="margin-left: 16px;background:grey;color:white;padding:16px">
+                                    {{ $contact->message }}
+                                </p>
+
+                                <div style="display: flex; gap:8px;align-items:flex-end;margin-top:20px">
+                                    <p>Répondre par :</p>
+                                    <a href="mailto:{{ $contact->email }}" class="button">Mail</a>
+                                    <a href="tel:{{ $contact->tel }}" class="button">Téléphone</a>
+                                </div>
+                                <a href="{{ route('delete-contact-message', $contact->id) }}" class="button"
+                                    style="display:inline-block;background: rgb(177, 7, 7);margin-top:16px">
+                                    Supprimer le message
+                                </a>
                             </div>
                         @endforeach
                     </section>
