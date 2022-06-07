@@ -7,4 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Calendar extends Model {
     use HasFactory;
+    public function products() {
+        return $this->hasMany(Product::class);
+    }
 }

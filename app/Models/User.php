@@ -11,8 +11,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Laravel\Cashier\Billable;
 
 
-class User extends Authenticatable
-{
+class User extends Authenticatable {
     use HasApiTokens, HasFactory, Notifiable, Billable;
 
     /**
@@ -48,8 +47,7 @@ class User extends Authenticatable
     ];
 
 
-    public function setPasswordAttribute($value)
-    {
+    public function setPasswordAttribute($value) {
         $this->attributes['password'] = Hash::make($value);
     }
 }

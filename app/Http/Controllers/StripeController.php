@@ -3,42 +3,43 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
-use Stripe;
-use Session;
-use Exception;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Subscription;
 
-class SubscriptionController extends Controller {
-    public function index() {
-        return view('subscription.create');
+class StripeController extends Controller {
+    public function checkout(Request $request) {
+        $user = Auth::user();
+        if (!$user->stripe_id) {
+            $user->createAsStripeCustomer();
+        }
+        return $request->user()->checkout([$request->price_id => 1], [
+            'success_url' => route('payment-success', ['price_id' => $request->price_id]) . '&session_id={CHECKOUT_SESSION_ID}',
+            'cancel_url' => route('payment-cancel', ['price_id' => $request->price_id]),
+        ]);
     }
 
-    // public function orderPost(Request $request) {
-    //     $user = auth()->user();
-    //     $input = $request->all();
-    //     $token =  $request->stripeToken;
-    //     $paymentMethod = $request->paymentMethod;
-    //     try {
+    public function payment_success(Request $request) {
+        $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
 
-    //         Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
-
-    //         if (is_null($user->stripe_id)) {
-    //             $stripeCustomer = $user->createAsStripeCustomer();
-    //         }
-
-    //         \Stripe\Customer::createSource(
-    //             $user->stripe_id,
-    //             ['source' => $token]
-    //         );
-
-    //         $user->newSubscription('test', $input['plane'])
-    //             ->create($paymentMethod, [
-    //                 'email' => $user->email,
-    //             ]);
-
-    //         return back()->with('success', 'Subscription is completed.');
-    //     } catch (Exception $e) {
-    //         return back()->with('success', $e->getMessage());
-    //     }
-    // }
+        $subscription = new Subscription;
+        $checkout = $request->user()->stripe()->checkout->sessions->retrieve($request->get('session_id'));
+        if ($checkout->status === 'success') {
+            $payment_intent = $stripe->paymentIntents->retrieve($checkout->payment_intent, []);
+            $price = $stripe->prices->retrieve($request->price_id, []);
+            $product = $stripe->products->retrieve($price->product, []);
+            $subscription->user_id = $request->user()->id;
+            $subscription->name = $product->name;
+            $subscription->stripe_id = $request->user()->stripe_id;
+            $subscription->stripe_status = $checkout->status;
+            $subscription->stripe_price = $request->price_id;
+            $subscription->created_at = $payment_intent->created;
+            $subscription->updated_at = $payment_intent->created;
+            $subscription->quantity = 1;
+            $subscription->calendar_id = 1;
+            $subscription->save();
+            return view('payment', ['type' => 'success']);
+        } else {
+            return view('payment', ['type' => 'cancel', 'price_id' => $request->price_id]);
+        }
+    }
 }

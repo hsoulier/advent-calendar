@@ -11,8 +11,8 @@ return new class extends Migration {
      * @return void
      */
     public function up() {
-        Schema::table('subscriptions', function ($table) {
-            $table->string('calendar_id')->nullable();
+        Schema::table('subscriptions', function (Blueprint $table) {
+            $table->foreignId('calendar_id');
         });
     }
 

@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Form;
+use App\Models\User;
 use App\Models\Purchase;
 use App\Models\Subscription;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,12 +23,21 @@ class UserController extends Controller {
     public function profile() {
         $user = Auth::user();
         $user->purchases = Purchase::where(['user_id' => $user->id])->get();
-        // TODO: Retrieve product from the product_id in subscription row
-        $user->subscriptions = Subscription::where([
-            'user_id' => $user->id,
-        ])->get();
+        $subscription = Subscription::where(['user_id' => $user->id])->first();
+        $user->subscriptions = Subscription::where(['user_id' => $user->id])->get();
+        // dd($user);
         return view('profile', ['user' => $user]);
     }
+
+    public function create_customer() {
+        $user = Auth::user();
+        if ($user->stripe_id) {
+            return redirect('/profile');
+        }
+        $user->createAsStripeCustomer();
+        return redirect('/profile');
+    }
+
 
     public function logout(Request $request) {
         Auth::logout();

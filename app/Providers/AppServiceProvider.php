@@ -15,12 +15,11 @@ class AppServiceProvider extends ServiceProvider {
      * @return void
      */
     public function register() {
-        // Cashier::ignoreMigrations();
         //
     }
 
     /**
-     * Bootstrap any application services.
+     * Bootstrap any application services. 
      *
      * @return void
      */

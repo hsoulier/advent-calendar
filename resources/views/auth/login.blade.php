@@ -2,7 +2,7 @@
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+                <x-application-logo class="w-20 h-20 fill-current text-palette-lavender" />
             </a>
         </x-slot>
 
@@ -15,23 +15,18 @@
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
-            <!-- Email Address -->
             <div>
                 <x-label for="email" :value="'Email'" />
-
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required
                     autofocus />
             </div>
 
-            <!-- Password -->
             <div class="mt-4">
                 <x-label for="password" :value="'Mot de passe'" />
-
                 <x-input id="password" class="block mt-1 w-full" type="password" name="password" required
                     autocomplete="current-password" />
             </div>
 
-            <!-- Remember Me -->
             <div class="block mt-4">
                 <label for="remember_me" class="inline-flex items-center">
                     <input id="remember_me" type="checkbox"
@@ -49,10 +44,11 @@
                     </a>
                 @endif
 
-                <x-classic-button class="ml-3">
-                    {{ __('Log in') }}
-                </x-classic-button>
+                <button type="submit" class="button ml-4">
+                    Log in
+                </button>
             </div>
+            <a class="mt-4 mx-auto w-fit block text-gray-400" href="{{ route('register') }}">Create an account</a>
         </form>
     </x-auth-card>
 </x-guest-layout>
