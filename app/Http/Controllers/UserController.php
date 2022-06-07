@@ -10,9 +10,11 @@ use App\Models\Subscription;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class UserController extends Controller {
+class UserController extends Controller
+{
     // TODO: Revoir la nomenclature des fonctions
-    public function index() {
+    public function index()
+    {
         if (Auth::user()->role == 1) {
             return $this->viewAdmin();
         } else {
@@ -20,16 +22,20 @@ class UserController extends Controller {
         }
     }
 
-    public function profile() {
+    public function profile()
+    {
         $user = Auth::user();
         $user->purchases = Purchase::where(['user_id' => $user->id])->get();
         // $subscription = Subscription::where(['user_id' => $user->id]);
-        $user->subscriptions = Subscription::where(['user_id' => $user->id])->get();
+        $user->subscriptions = Subscription::where([
+            'user_id' => $user->id,
+        ])->get();
         // dd($user);
         return view('profile', ['user' => $user]);
     }
 
-    public function create_customer() {
+    public function create_customer()
+    {
         $user = Auth::user();
         if ($user->stripe_id) {
             return redirect('/profile');
@@ -38,17 +44,16 @@ class UserController extends Controller {
         return redirect('/profile');
     }
 
-
-    public function logout(Request $request) {
+    public function logout(Request $request)
+    {
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect('/');
     }
 
-
-    public function sendContact(Request $request) {
-
+    public function sendContact(Request $request)
+    {
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email',
@@ -59,17 +64,23 @@ class UserController extends Controller {
 
         Form::create($request->all());
 
-        return back()->with('success', 'Votre message a bien été envoyé et les données sont enregistrées avec succès.');
+        return back()->with(
+            'success',
+            'Votre message a bien été envoyé et les données sont enregistrées avec succès.'
+        );
     }
 
-    public function viewAdmin() {
+    public function viewAdmin()
+    {
         return view('dashboard', [
             'users' => User::all(),
             'products' => Product::all(),
+            'contacts' => Form::all(),
         ]);
     }
 
-    public function viewUser() {
+    public function viewUser()
+    {
         return view('profile');
     }
 }
