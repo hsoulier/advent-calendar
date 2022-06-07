@@ -50,12 +50,6 @@ class UserController extends Controller {
 
         Form::create($request->all());
 
-
-
-
-
-        // TODO: Gérer si form est envoyé et validé (flag success)
-        //return view("contact", ["success" => true]);
         return back()->with('success', 'Votre message a bien été envoyé et les données sont enregistrées avec succès.');
     }
 

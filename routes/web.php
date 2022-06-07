@@ -40,6 +40,10 @@ Route::get('/dashboard/products/{id}', [UserController::class, 'index'])->middle
 Route::get('/deleteAccount/{id}', [AdminController::class, 'deleteAccount'])->middleware(['auth'])->name('delete-account');
 Route::get('/edit/{id}', [AdminController::class, 'editProduct'])->middleware(['auth'])->name('edit-product');
 Route::get('/update/{id}', [AdminController::class, 'updateProduct'])->middleware(['auth'])->name('update-product');
+Route::post('/products/comment', [ProductController::class, 'send_comment'])->name('send-comment');
+
+
+
 // Stripe
 // Route::get('/subscription/create', [SubscriptionController::class, 'index'])->name('subscription.create');
 // Route::post('order-post', [SubscriptionController::class, 'orderPost'])->name('order-post');

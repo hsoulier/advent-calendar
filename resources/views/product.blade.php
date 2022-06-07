@@ -23,4 +23,39 @@
         </section>
 
     </main>
+
+
+
+    <h3>Commentaires</h3>
+    @foreach ($comments as $comment)
+        {{ $comment->date }}
+        {{ $comment->text }}
+    @endforeach
+
+
+    <div class="max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-lg mx-auto">
+            <form action="{{ route('send-comment') }}" method="POST" class="space-y-4 p-8 mt-6 mb-0 rounded-lg shadow-2xl bg-white">
+                @csrf
+
+                <input type="hidden" name="product_id" value="{{ $product->id}}">
+
+                <div>
+                    <label for="comment" class="text-sm font-medium">Commentaire</label>
+                    <textarea name="comment" id="comment" class="w-full p-3 text-sm border-gray-200 rounded-lg"></textarea>
+                </div>
+
+                <div class="mt-4">
+                    <button type="submit" class="inline-flex items-center justify-center w-full px-5 py-3 text-white bg-black rounded-lg sm:w-auto">
+                        <span class="font-medium"> Envoyer </span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ml-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
 </x-layout>
