@@ -42,7 +42,7 @@
         </section>
 
         <section class="mt-24">
-            <h3 class="text-palette-orange text-lg font-bold mb-2">Danger Zone</h3>
+            <h3 class="text-palette-orange heading-3">Danger Zone</h3>
         </section>
     </main>
 </x-layout>

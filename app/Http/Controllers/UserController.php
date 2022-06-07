@@ -23,7 +23,7 @@ class UserController extends Controller {
     public function profile() {
         $user = Auth::user();
         $user->purchases = Purchase::where(['user_id' => $user->id])->get();
-        $subscription = Subscription::where(['user_id' => $user->id])->first();
+        // $subscription = Subscription::where(['user_id' => $user->id]);
         $user->subscriptions = Subscription::where(['user_id' => $user->id])->get();
         // dd($user);
         return view('profile', ['user' => $user]);

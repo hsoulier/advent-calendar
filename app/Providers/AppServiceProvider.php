@@ -28,6 +28,5 @@ class AppServiceProvider extends ServiceProvider {
         Cashier::useCustomerModel(User::class);
         Cashier::calculateTaxes();
         Cashier::useSubscriptionModel(Subscription::class);
-        Cashier::useSubscriptionItemModel(SubscriptionItem::class);
     }
 }

@@ -23,7 +23,7 @@ class StripeController extends Controller {
 
         $subscription = new Subscription;
         $checkout = $request->user()->stripe()->checkout->sessions->retrieve($request->get('session_id'));
-        if ($checkout->status === 'success') {
+        if ($checkout->status === 'complete') {
             $payment_intent = $stripe->paymentIntents->retrieve($checkout->payment_intent, []);
             $price = $stripe->prices->retrieve($request->price_id, []);
             $product = $stripe->products->retrieve($price->product, []);
