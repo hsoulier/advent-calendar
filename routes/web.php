@@ -39,7 +39,7 @@ Route::get('/dashboard/products/{id}', [UserController::class, 'index'])->middle
 Route::get('/deleteAccount/{id}', [AdminController::class, 'deleteAccount'])->middleware(['auth'])->name('delete-account');
 Route::get('/edit/{id}', [AdminController::class, 'editProduct'])->middleware(['auth'])->name('edit-product');
 Route::get('/update/{id}', [AdminController::class, 'updateProduct'])->middleware(['auth'])->name('update-product');
-Route::get('/deleteContact/{id}', [AdminController::class, 'deleteContact'])->middleware(['auth'])->name('delete-contact');
+Route::get('/deleteContactMessage/{id}', [AdminController::class, 'deleteContactMessage'])->middleware(['auth'])->name('delete-contact-message');
 
 // Stripe
 Route::get('/profile/create-customer', [UserController::class, 'create_customer'])->middleware(['auth'])->name('create-customer');

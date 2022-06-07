@@ -76,7 +76,7 @@
                                     <a href="mailto:{{ $contact->email }}" class="button">Mail</a>
                                     <a href="tel:{{ $contact->tel }}" class="button">Téléphone</a>
                                 </div>
-                                <a href="{{ route('delete-contact', $contact->id) }}" class="button"
+                                <a href="{{ route('delete-contact-message', $contact->id) }}" class="button"
                                     style="display:inline-block;background: rgb(177, 7, 7);margin-top:16px">
                                     Supprimer le message
                                 </a>

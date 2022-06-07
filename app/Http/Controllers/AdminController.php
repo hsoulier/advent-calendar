@@ -34,10 +34,10 @@ class AdminController extends Controller
         return redirect('/dashboard');
     }
 
-    public function deleteContact($id)
+    public function deleteContactMessage($id)
     {
         $contact = Form::find($id);
-        $contact->delAete();
+        $contact->delete();
         return redirect('/dashboard');
     }
 }
