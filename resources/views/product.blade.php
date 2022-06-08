@@ -30,6 +30,9 @@
                         <span class="font-bold">{{ $comment->user->name }}</span>
                     </div>
                     <div class="mt-2">{{ $comment->text }}</div>
+                    @if ( Auth::check() && ( (Auth::user()->role == 1) || (Auth::user()->id == $comment->user_id) ) )
+                        <a href="{{ route('delete-comment-product', ['product_id'=>$product->id, $comment->id]) }}" class="button">Supprimer</a>
+                    @endif
                 @endforeach
             @endif
 

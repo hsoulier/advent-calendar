@@ -26,6 +26,8 @@ Route::post('/contact', [UserController::class, 'sendContact'])->name('send-cont
 Route::get('/about', fn () => view('about'))->name('about');
 Route::get('/products/{id}', [ProductController::class, 'single'])->name('product');
 Route::post('/products/comment', [ProductController::class, 'send_comment'])->name('send-comment');
+Route::get('/xxx/{id}', [ProductController::class, 'deleteComment'])->name('delete-comment-product');
+
 
 // ? endpoints of profile (guest)
 Route::get('/profile', [UserController::class, 'profile'])->middleware(['auth'])->name('profile');
@@ -40,6 +42,7 @@ Route::get('/deleteAccount/{id}', [AdminController::class, 'deleteAccount'])->mi
 Route::get('/edit/{id}', [AdminController::class, 'editProduct'])->middleware(['auth'])->name('edit-product');
 Route::get('/update/{id}', [AdminController::class, 'updateProduct'])->middleware(['auth'])->name('update-product');
 Route::get('/deleteContactMessage/{id}', [AdminController::class, 'deleteContactMessage'])->middleware(['auth'])->name('delete-contact-message');
+Route::get('/deleteComment/{id}', [AdminController::class, 'deleteComment'])->middleware(['auth'])->name('delete-comment');
 
 // Stripe
 Route::get('/profile/create-customer', [UserController::class, 'create_customer'])->middleware(['auth'])->name('create-customer');
