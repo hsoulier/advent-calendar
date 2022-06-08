@@ -48,4 +48,14 @@ class ProductController extends Controller
         $comment->save();
         return redirect("/products/{$values['product_id']}");
     }
+
+    public function deleteComment(Request $request,$comment_id) {
+        // dd($request, $comment_id);
+
+        $comment = Comment::find($comment_id);
+        $comment->delete();
+        return redirect()->route('product', ['id' => $request->product_id]);
+
+
+    }
 }

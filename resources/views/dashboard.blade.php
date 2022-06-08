@@ -84,6 +84,33 @@
                         @endforeach
                     </section>
                 </div>
+
+
+                <div class="m-6 p-6 shadow-sm">
+                    <h2 style="margin-bottom:40px;font-size:50px;font-weight:700">
+                        Gestion des commentaires
+                    </h2>
+                    <section style="display: flex;flex-direction:column;gap:8px;">
+                        @foreach ($comments as $comment)
+                            <div style="background: rgb(230, 230, 230);border-radius: 0.25rem;" class="px-5 py-2">
+                                <p style="font-size:20px">
+                                    Commentaire de
+                                    <span style="font-size: 1.3em;font-weight:bold">{{ $comment->user->name }}</span>
+                                </p>
+
+                                <p style="margin-left: 16px;background:grey;color:white;padding:16px">
+                                    {{ $comment->text }}
+                                </p>
+
+                                <a href="{{ route('delete-comment', $comment->id) }}" class="button"
+                                    style="display:inline-block;background: rgb(177, 7, 7);margin-top:16px">
+                                    Supprimer le commentaire
+                                </a>
+                            </div>
+                        @endforeach
+                    </section>
+                </div>
+
             </div>
         </div>
     </div>
