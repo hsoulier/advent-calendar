@@ -26,7 +26,7 @@ Route::post('/contact', [UserController::class, 'sendContact'])->name('send-cont
 Route::get('/about', fn () => view('about'))->name('about');
 Route::get('/products/{id}', [ProductController::class, 'single'])->name('product');
 Route::post('/products/comment', [ProductController::class, 'send_comment'])->name('send-comment');
-Route::get('/xxx/{id}', [ProductController::class, 'deleteComment'])->name('delete-comment-product');
+Route::get('/delete-comment/{id}', [ProductController::class, 'deleteComment'])->name('delete-comment-product');
 
 
 // ? endpoints of profile (guest)
