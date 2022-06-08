@@ -14,3 +14,13 @@ Alpine.start();
 });
 
 customElements.define("circle-text", CircleText);
+
+if (document.querySelector("dashboard")) {
+    [...document.querySelectorAll("[data-tab-selector]")].forEach(($el, i) => {
+        $el.addEventListener("click", (e) => {
+            console.log(e, i);
+            // const $tab = document.querySelectorAll(`[]`);
+            // $tab.click();
+        });
+    });
+}

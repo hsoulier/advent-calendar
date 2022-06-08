@@ -9,7 +9,6 @@
 .product__description h2 {
     @apply text-xl font-semibold mb-2;
 }
-
 .heading-3 {
     @apply text-lg font-bold mb-2;
 }

@@ -36,8 +36,9 @@
                         </div>
                         @if (Auth::check() && (Auth::user()->role == 1 || Auth::user()->id == $comment->user_id))
                             <a href="{{ route('delete-comment-product', ['product_id' => $product->id, $comment->id]) }}"
-                                class="p-2 text-gray-400" title="Delete comment"><svg width="20" xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                                class="p-2 text-gray-400 transition-colors duration-200 ease-in hover:text-palette-orange"
+                                title="Delete comment"><svg width="20" xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24" fill="none" class="stroke-current" stroke-width="1.5"
                                     stroke-linecap="butt" stroke-linejoin="bevel">
                                     <polyline points="3 6 5 6 21 6"></polyline>
                                     <path
