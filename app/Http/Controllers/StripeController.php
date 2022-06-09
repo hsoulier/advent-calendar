@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Subscription;
@@ -41,5 +42,12 @@ class StripeController extends Controller {
         } else {
             return view('payment', ['type' => 'cancel', 'price_id' => $request->price_id]);
         }
+    }
+
+    public function singleCheckout(Request $request, $id) {
+        $product = Product::findOrFail($id);
+        // dd(intval($product->price) * 100, $product->name);
+        dd($request->user()->findTaxId("txr_1L8fhULxko5YkdEBOJXbaWfg"));
+        return $request->user()->checkoutCharge(intval($product->price) * 100, $product->name);
     }
 }

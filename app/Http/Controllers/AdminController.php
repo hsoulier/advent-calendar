@@ -5,17 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Form;
 use App\Models\Product;
 use App\Models\User;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    public function deleteAccount($id)
-    {
-        $user = User::find($id);
-        $user->delete();
-        return redirect('/dashboard');
-    }
-
     public function editProduct($id)
     {
         $product = Product::find($id);
@@ -40,4 +34,13 @@ class AdminController extends Controller
         $contact->delete();
         return redirect('/dashboard');
     }
+
+    public function deleteComment($id)
+    {
+        $comment = Comment::find($id);
+        $comment->delete();
+        return redirect('/dashboard');
+    }
+
+
 }

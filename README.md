@@ -6,7 +6,7 @@
 
 Use Yarn instead of NPM
 
-``` sh
+```sh
 > yarn # Install dependencies
 > yarn watch # Watch website
 
@@ -17,8 +17,6 @@ Use Yarn instead of NPM
 ## TODO
 
 - Add a Markdown editor for product page
-- Add button on profile to go to dashboard if admin
-- Afficher tous les produits dans un ordre aléatoire et griser les produits des jours à venir
 
 ## Features
 
@@ -32,10 +30,21 @@ Use Yarn instead of NPM
 
 ### Laravel
 
-- Auth (admin + Guest)
-  - 2 status
-- Redirection for guest
-- Stripe (Cashier + Stripe libs) - partial due to non comprehensible errors 😤
+- Authentication (admin and user)
+    - 2 status
+- Redirection for user
+- Stripe (cashier + stripe libs)
+- Purchase of the whole calendar
+- Contact form
+- Post comments and delete your own comment
+- Delete your user account
+
+
+#### Administration
+- User management
+- Product management
+- Contact form management (detele and reply)
+- Comment management (delete)
 
 ### Libs
 

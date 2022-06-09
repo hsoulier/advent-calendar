@@ -9,6 +9,8 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Cashier\Billable;
+use function Illuminate\Events\queueable;
+
 
 
 class User extends Authenticatable {
@@ -49,5 +51,13 @@ class User extends Authenticatable {
 
     public function setPasswordAttribute($value) {
         $this->attributes['password'] = Hash::make($value);
+    }
+
+    protected static function booted() {
+        static::updated(queueable(function ($customer) {
+            if ($customer->hasStripeId()) {
+                $customer->syncStripeCustomerDetails();
+            }
+        }));
     }
 }

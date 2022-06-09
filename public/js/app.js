@@ -5103,6 +5103,21 @@ _toConsumableArray(document.querySelectorAll("#scroll-to-next-screen")).forEach(
 
 customElements.define("circle-text", _web_components_circle_text__WEBPACK_IMPORTED_MODULE_0__.CircleText);
 
+if (document.querySelector(".dashboard")) {
+  _toConsumableArray(document.querySelectorAll("[data-tab-selector]")).forEach(function ($el, i) {
+    $el.addEventListener("click", function (e) {
+      _toConsumableArray(document.querySelectorAll("[data-tab]:not([data-tab=\"".concat(i + 1, "\"])"))).forEach(function (el) {
+        el.classList.remove("active");
+        el.classList.add("not-active");
+      });
+
+      var $currentTab = document.querySelector("[data-tab=\"".concat(i + 1, "\"]"));
+      $currentTab.classList.add("active");
+      $currentTab.classList.remove("not-active"); // $tab.click();
+    });
+  });
+}
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":

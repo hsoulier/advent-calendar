@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Form;
 use App\Models\User;
+use App\Models\Comment;
 use App\Models\Purchase;
 use App\Models\Subscription;
 use Illuminate\Http\Request;
@@ -34,7 +35,7 @@ class UserController extends Controller
         return view('profile', ['user' => $user]);
     }
 
-    public function create_customer()
+    /* public function create_customer()
     {
         $user = Auth::user();
         if ($user->stripe_id) {
@@ -42,7 +43,7 @@ class UserController extends Controller
         }
         $user->createAsStripeCustomer();
         return redirect('/profile');
-    }
+    } */
 
     public function logout(Request $request)
     {
@@ -76,11 +77,23 @@ class UserController extends Controller
             'users' => User::all(),
             'products' => Product::all(),
             'contacts' => Form::all(),
+            'comments' => Comment::all(),
         ]);
     }
 
     public function viewUser()
     {
         return view('profile');
+    }
+
+    public function deleteAccount($id)
+    {
+        $user = User::find($id);
+        $comments = Comment::where(['user_id' => $user->id])->get();
+        foreach ($comments as $comment) {
+            $comment->delete();
+        }
+        $user->delete();
+        return redirect('/dashboard');
     }
 }
