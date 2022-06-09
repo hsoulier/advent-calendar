@@ -15,6 +15,8 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($request->id);
 
+
+
         // Bloquer l'accès aux produits dépassant la date d'aujd
         if (new DateTime($product->date) > new DateTime()) {
             return redirect()->route('home');
@@ -57,5 +59,22 @@ class ProductController extends Controller
         return redirect()->route('product', ['id' => $request->product_id]);
 
 
+    }
+
+    public function singleDeux(Request $request)
+    {
+        /* $product = Product::findOrFail($request->id);
+
+        // Bloquer l'accès aux produits dépassant la date d'aujd
+        if (new DateTime($product->date) > new DateTime()) {
+            return redirect()->route('home');
+        }
+        $product->description = app(MarkdownRenderer::class)->toHtml(
+            $product->description
+        ); */
+
+
+        // dd($comments[0]->user);
+        return view('/about');
     }
 }
