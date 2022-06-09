@@ -32,13 +32,13 @@ Route::get('/delete-comment/{id}', [ProductController::class, 'deleteComment'])-
 // ? endpoints of profile (guest)
 Route::get('/profile', [UserController::class, 'profile'])->middleware(['auth'])->name('profile');
 Route::get('/logout', [UserController::class, 'logout'])->middleware(['auth'])->name('logout');
+Route::get('/deleteAccount/{id}', [UserController::class, 'deleteAccount'])->middleware(['auth'])->name('delete-account');
 
 // ? endpoints of Dashboard (admin)
 Route::get('/dashboard', [UserController::class, 'index'])->middleware(['auth'])->name('dashboard');
 Route::get('/dashboard/products', [UserController::class, 'index'])->middleware(['auth'])->name('dashboard-products');
 Route::get('/dashboard/products/{id}', [UserController::class, 'index'])->middleware(['auth'])->name('dashboard-product');
 
-Route::get('/deleteAccount/{id}', [AdminController::class, 'deleteAccount'])->middleware(['auth'])->name('delete-account');
 Route::get('/edit/{id}', [AdminController::class, 'editProduct'])->middleware(['auth'])->name('edit-product');
 Route::get('/update/{id}', [AdminController::class, 'updateProduct'])->middleware(['auth'])->name('update-product');
 Route::get('/deleteContactMessage/{id}', [AdminController::class, 'deleteContactMessage'])->middleware(['auth'])->name('delete-contact-message');

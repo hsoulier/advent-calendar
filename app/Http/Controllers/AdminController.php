@@ -10,13 +10,6 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    public function deleteAccount($id)
-    {
-        $user = User::find($id);
-        $user->delete();
-        return redirect('/dashboard');
-    }
-
     public function editProduct($id)
     {
         $product = Product::find($id);

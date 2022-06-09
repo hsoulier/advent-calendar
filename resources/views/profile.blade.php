@@ -43,6 +43,7 @@
 
         <section class="mt-24">
             <h3 class="text-palette-orange heading-3">Danger Zone</h3>
+            <a href="{{ route('delete-account', Auth::user()->id) }}" class="button">Supprimer mon compte</a>
         </section>
     </main>
 </x-layout>

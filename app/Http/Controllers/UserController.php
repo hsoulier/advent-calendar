@@ -77,12 +77,23 @@ class UserController extends Controller
             'users' => User::all(),
             'products' => Product::all(),
             'contacts' => Form::all(),
-            'comments'  => Comment::all(),
+            'comments' => Comment::all(),
         ]);
     }
 
     public function viewUser()
     {
         return view('profile');
+    }
+
+    public function deleteAccount($id)
+    {
+        $user = User::find($id);
+        $comments = Comment::where(['user_id' => $user->id])->get();
+        foreach ($comments as $comment) {
+            $comment->delete();
+        }
+        $user->delete();
+        return redirect('/dashboard');
     }
 }
