@@ -55,23 +55,25 @@
             @endif
 
 
-            <form action="{{ route('send-comment') }}" method="POST" class="w-full py-8 mt-24 mb-0 border-t">
-                @csrf
-                <input type="hidden" name="product_id" value="{{ $product->id }}">
-                <div>
-                    <label for="comment" class="text-sm font-medium">Ecrire un commentaire</label>
-                    <textarea name="comment" id="comment" class="w-full p-3 text-sm border-gray-200 rounded-lg"></textarea>
-                </div>
+            @if (Auth::check())
+                <form action="{{ route('send-comment') }}" method="POST" class="w-full py-8 mt-24 mb-0 border-t">
+                    @csrf
+                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+                    <div>
+                        <label for="comment" class="text-sm font-medium">Ecrire un commentaire</label>
+                        <textarea name="comment" id="comment" class="w-full p-3 text-sm border-gray-200 rounded-lg"></textarea>
+                    </div>
 
-                <button type="submit" class="button inline-flex items-center mt-4">
-                    <span class="font-medium"> Envoyer </span>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ml-3" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                    </svg>
-                </button>
-            </form>
+                    <button type="submit" class="button inline-flex items-center mt-4">
+                        <span class="font-medium"> Envoyer </span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ml-3" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                    </button>
+                </form>
+            @endif
         </section>
 
     </main>
