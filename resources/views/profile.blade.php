@@ -30,16 +30,6 @@
             @endif
 
         </section>
-        <section class="mt-12">
-            <h2 class="text-lg font-bold mb-2">Produits individuels</h2>
-            @if (count($user->purchases))
-                @foreach ($user->purchases as $purchase)
-                    <div>{{ $purchase->product_id }}</div>
-                @endforeach
-            @else
-                <div class="text-center mt-2 text-gray-400">Pas de produits acheté encore 🥹</div>
-            @endif
-        </section>
 
         <section class="mt-24">
             <h3 class="text-palette-orange heading-3">Danger Zone</h3>
