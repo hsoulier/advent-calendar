@@ -18,6 +18,7 @@
             <article class="mt-12">
                 {!! $product->description !!}
             </article>
+            {{-- <a href="{{ route('single-checkout', [$product->id]) }}" class="button">Acheter le produit</a> --}}
         </section>
         <section class="text-container-nice-reading">
             <h3 class="heading-3">Espace commentaires</h3>

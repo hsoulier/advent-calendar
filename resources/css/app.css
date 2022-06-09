@@ -27,3 +27,15 @@
 .button.outline-btn {
     @apply border border-palette-orange bg-transparent text-palette-orange;
 }
+
+.active {
+    @apply flex pointer-events-auto;
+}
+
+.tab {
+    @apply absolute inset-0 p-8 w-full h-full gap-6 flex-col bg-white;
+}
+
+.not-active {
+    @apply hidden pointer-events-none;
+}

@@ -44,8 +44,9 @@ Route::get('/update/{id}', [AdminController::class, 'updateProduct'])->middlewar
 Route::get('/deleteContactMessage/{id}', [AdminController::class, 'deleteContactMessage'])->middleware(['auth'])->name('delete-contact-message');
 Route::get('/deleteComment/{id}', [AdminController::class, 'deleteComment'])->middleware(['auth'])->name('delete-comment');
 
-// Stripe
+// ? Stripe
 Route::get('/profile/create-customer', [UserController::class, 'create_customer'])->middleware(['auth'])->name('create-customer');
+Route::get('/charge-checkout/{id}', [StripeController::class, 'singleCheckout'])->middleware(['auth'])->name('single-checkout');
 Route::get('/checkout/{price_id}', [StripeController::class, 'checkout'])->middleware(['auth'])->name('checkout');
 Route::get('/payment-success', [StripeController::class, 'payment_success'])->name('payment-success');
 Route::get('/payment-cancel', fn (Request $request) => view('payment', ['type' => 'cancel', 'price_id' => $request->price_id]))->name('payment-cancel');
