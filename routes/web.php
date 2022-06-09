@@ -6,6 +6,7 @@ use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StripeController;
 use App\Http\Controllers\UserController;
+use Spatie\LaravelMarkdown\MarkdownRenderer;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,7 +24,20 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [CalendarController::class, 'home'])->name('home');
 Route::get('/contact', fn () => view('contact'))->name('contact');
 Route::post('/contact', [UserController::class, 'sendContact'])->name('send-contact');
-Route::get('/about', fn () => view('about'))->name('about');
+//Route::get('/about', fn () => view('about'))->name('about');
+
+Route::get('/about', function () {
+    $file = file_get_contents('../README.md', true);
+
+    $content = app(MarkdownRenderer::class)->toHtml(
+        $file
+    );
+
+    //dd($content);
+
+    return view('about', ['content' => $content]);
+})->name('about');
+
 Route::get('/products/{id}', [ProductController::class, 'single'])->name('product');
 Route::post('/products/comment', [ProductController::class, 'send_comment'])->name('send-comment');
 Route::get('/delete-comment/{id}', [ProductController::class, 'deleteComment'])->name('delete-comment-product');
